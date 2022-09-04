@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+
     font-weight: 100;
     overflow: scroll;
 }
@@ -12,7 +13,7 @@ body {
     /* Other browsers*/
     background: linear-gradient(90deg, #D0C9D0, #B4A8AA);
     
-    color: #16161d;
+    color: #161c1d;
     font-family: luminari, monospace; 
 }
 
@@ -24,10 +25,6 @@ table {
 
 h1 {
     font-weight: 900;
-}
-
-h3 {
-    line-height: 1.1; 
 }
 
 h4 {
@@ -46,7 +43,7 @@ a {
 
 label {
     font-size: 1em;
-    line-height: 1.4; 
+    line-height: 1.4;
 }
 
 /* --Separators-- */
@@ -112,28 +109,35 @@ th#about > div.about {
 }
 
 #X {
-    margin-top: 4px;
-    padding: 3px;
+    margin-top: 2px;
+    padding: 4px;
+    border: inset 4px #F9F7FA;
+    background-color: #D0C9D080;
     font-family: inherit;
     font-weight: inherit;
 }
 
-input:required {
-    border: inset 4px #F9F7FA;
-}
-
-/* если не введено значение в поле required */
-input:invalid {
-    background-color: #D0C9D080;
-}
-
 #Y {
+    margin-top: 5px;
     margin-left: 5px;
     padding-left: 3px;
     border: outset 4px #F9F7FA;
     background-color: #D0C9D080; 
     font-family: inherit;
     font-weight: inherit;
+}
+
+.error {
+    margin: 20px 0px;
+    padding: 2px 6px;
+    font-size: 80%;
+    color: #F9F7FA;
+    background-color: #640007ea;
+    border-radius: 0 0 5px 5px;
+}
+
+.not.error {
+    background-color: inherit;
 }
 
 #check {
@@ -154,6 +158,13 @@ input:invalid {
 /* --Result-- */
 .result {
     padding: 0px 50px;
+}
+
+hr {
+    width: 50%; 
+    margin: 0 25% 1%;
+    background: #F9F7FA80;
+    height: 3px;
 }
 
 /* --Table with info-- */

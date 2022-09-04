@@ -4,8 +4,9 @@
     <head> 
       <meta charset='utf-8'>
       <title>Лаба рас</title>
-      <link href='style.css' rel='stylesheet'>
 
+      <link href='styles/style.css' rel='stylesheet'>
+      <script type='text/javascript' src='scripts/script.js' defer></script>
     </head>
     
     <body>
@@ -48,7 +49,7 @@
                 Здесь можно ввести свои значения
                 (каждый параметр необходимо задать)
               </h4><br>
-              <form method='GET'> <!-- Разобраться с отправкой-->
+              <form method='GET' novalidate> <!-- Разобраться с отправкой-->
                 <p>
                   <label for='R'>Выберите R:</label>
                   <select id='R' name='R' required>
@@ -59,14 +60,21 @@
                     <option value='4'>4</option>
                     <option value='5'>5</option>
                   </select>
-                  <br><br>
+                  <br>
+                  <span class='r-error'></span>
+                  <br>
+
                   <label for='X'>
                     <!-- Введите X (должно изменяться от -5 до 3 не включительно): -->
                     Введите X ( изменяется в интервале (-5 ; 3) ):
                   </label>
                   <input id='X' name='X' type='text' required
                           onkeyup='this.value = this.value.replace(/[^\d-.]/g,"")' maxlength='14'>
-                  <br><br>
+                  <br>
+                  <!-- aria-live='polite' понять нужно ли это -->
+                  <span class='x-error'></span>
+                  <br>
+
                   <label for='Y'>Выберите Y:</label>
                   <select id='Y' name='Y' required>
                     <option value='' selected>Тык</option>
@@ -81,7 +89,9 @@
                     <option value='4'>4</option>
                     <option value='5'>5</option>
                   </select>
-                  <br><br>
+                  <br>
+                  <span class='y-error'></span>
+                  <br>
                   <label for='check'>
                     Для того, чтобы проверить попадание точки в область,
                     нажмите на кнопку
@@ -98,13 +108,14 @@
               <h2>Заданная область:</h2><br>
               <section id='coordinate-system'> 
                 <svg width='300' height='300'>
+                  <!-- figures -->
                   <polygon points='150,150 250,150 250,100 150,100' stroke='#16161d' 
                           stroke-width='2' fill='#D0C9D090'></polygon>
 
-                  <path d=' M 50,150 A 100 100 90 0 1 150,50 L 150,150 Z' stroke='#16161d' 
+                  <path d='M 50,150 A 100 100 90 0 1 150,50 L 150,150 Z' stroke='#16161d' 
                         stroke-width='2' fill='#D0C9D090'></path>
 
-                  <polygon points="150,150 50,150 150,250" stroke='#16161d' 
+                  <polygon points='150,150 50,150 150,250' stroke='#16161d' 
                   stroke-width='2' fill='#D0C9D090'></polygon>
 
                   <!-- coordinate axes -->
@@ -150,6 +161,7 @@
 
         <tr> <!-- Row 4 -->
           <td class='result' colspan='3' >
+            <hr>
             <h2><label for='result'>Результат вашего запроса:</label></h2>
             <input id='result' name='result' type='text'>
           </td> 
@@ -174,9 +186,7 @@
               </thead>
             </table>
           </td>
-
         </tr>
-
       </table>
     </body>
 </html>
