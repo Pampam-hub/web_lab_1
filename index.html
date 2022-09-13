@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html> <!-- Разобраться с атрибутами тута-->
-
+<html lang='ru'>
     <head> 
       <meta charset='utf-8'>
       <title>Лаба рас</title>
+      <link rel='icon' href='./img/favicon.ico'>
 
-      <link href='styles/style.css' rel='stylesheet'>
-      <script type='text/javascript' src='scripts/script.js' defer></script>
+      <link rel='stylesheet' href='./styles/style.css' >
+      <script type='text/javascript' src='./scripts/main.js' defer></script>
+      <script type='text/javascript' src='./scripts/cleaning.js' defer></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     </head>
     
     <body>
@@ -15,7 +17,7 @@
           <td class='horizontal-separator' colspan='7'></td>
         </tr>
         <tr> <!-- Row 2 -->
-          <td class='edge-separator' rowspan='5'></td>
+          <td class='edge-separator' rowspan='4'></td>
 
           <th id='about' rowspan='5'>
             <div class='about'>
@@ -42,14 +44,14 @@
             </div>
           </th>
 
-          <td class='vertical-separator' rowspan='5'></td>
+          <td class='vertical-separator' rowspan='4'></td>
 
           <td id='data'>
               <h4>
                 Здесь можно ввести свои значения
                 (каждый параметр необходимо задать)
               </h4><br>
-              <form method='GET' novalidate> <!-- Разобраться с отправкой-->
+              <form id='feedback-form' onsubmit="submitForm(); return false;" novalidate> 
                 <p>
                   <label for='R'>Выберите R:</label>
                   <select id='R' name='R' required>
@@ -65,11 +67,10 @@
                   <br>
 
                   <label for='X'>
-                    <!-- Введите X (должно изменяться от -5 до 3 не включительно): -->
                     Введите X ( изменяется в интервале (-5 ; 3) ):
                   </label>
                   <input id='X' name='X' type='text' required
-                          onkeyup='this.value = this.value.replace(/[^\d-.]/g,"")' maxlength='14'>
+                          onkeyup='this.value = this.value.replace(/[^\d-.e]/g,"")' maxlength='14'>
                   <br>
                   <!-- aria-live='polite' понять нужно ли это -->
                   <span class='x-error'></span>
@@ -97,6 +98,7 @@
                     нажмите на кнопку
                   </label><br>
                   <input id='check' name='check' type='submit' value='Проверить'>
+                  <p id='result'></p>
                 </p>
               </form>
             </div>
@@ -160,19 +162,13 @@
         </tr>
 
         <tr> <!-- Row 4 -->
-          <td class='result' colspan='3' >
-            <hr>
-            <h2><label for='result'>Результат вашего запроса:</label></h2>
-            <input id='result' name='result' type='text'>
-          </td> 
-        </tr>
-
-        <tr> <!-- Row 5 -->
           <td class='horizontal-separator' colspan='3'></td>
         </tr>
 
-        <tr> <!-- Row 6 -->
+        <tr> <!-- Row 5 -->
           <td colspan='3'>
+            <hr>
+            <input id='clean' type='button' value='Очистить таблицу' onclick='cleanTable()''>
             <table class='info'>
               <thead>
                 <tr>
