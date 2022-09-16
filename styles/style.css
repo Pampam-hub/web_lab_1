@@ -1,10 +1,10 @@
+@import url('http://fonts.cdnfonts.com/css/luminari');
+
 /* --Universal Styles-- */
 * {
     margin: 0;
     padding: 0;
-
     font-weight: 100;
-    overflow: scroll;
 }
 
 body {
@@ -14,7 +14,8 @@ body {
     background: linear-gradient(90deg, #D0C9D0, #B4A8AA);
     
     color: #16161d;
-    font-family: luminari, monospace; 
+    /* font-family: 'Luminari', sans-serif; */
+    font-family: 'Pangolin', cursive;
 }
 
 table {
@@ -76,7 +77,7 @@ th#about {
 }
 
 th#about > div.about {
-    font-family: fantasy, luminari, serif; 
+    font-family: inherit;
     line-height: 1.4;        /* межстрочные отступы = умножение этого числа на размер шрифта  */
 }
 
@@ -97,6 +98,7 @@ th#about > div.about {
 /* --Data-- */
 #data {
     min-width: 200px;
+    max-width: 400px;
     width: 28%;
     height: 440px;
     padding: 5px 30px;
@@ -195,7 +197,9 @@ hr {
 
 table.info {
     border-collapse: collapse;
-    max-height: 300px;
+    margin: 1% auto 1%;
+    max-height: 30px;
+    overflow: scroll;
 }
 
 table.info th {
@@ -208,6 +212,6 @@ table.info th {
 table.info td {
     padding: 3px 0px;
     width: 140px;
-    border: solid 2px #F9F7FA;
+    border: solid 3px #F9F7FA;
     background-color: #D0C9D070;
 }

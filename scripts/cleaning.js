@@ -7,7 +7,7 @@ function cleanTable() {
             <th>Y</th>
             <th>Результат</th>
             <th>Время запроса</th>
-            <th>Время исполнения</th>
+            <th>Время исполнения, нс</th>
         </tr>
     </thead>`;
     $('table.info').html(empty_table);

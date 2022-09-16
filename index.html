@@ -8,9 +8,11 @@
       <link rel='stylesheet' href='./styles/style.css' >
       <script type='text/javascript' src='./scripts/main.js' defer></script>
       <script type='text/javascript' src='./scripts/cleaning.js' defer></script>
+      <script type='text/javascript' src='./scripts/updating.js' defer></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    </head>
-    
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+      </style>
     <body>
       <table id='main'>
         <tr> <!-- Row 1 -->
@@ -68,9 +70,9 @@
 
                   <label for='X'>
                     Введите X ( изменяется в интервале (-5 ; 3) ):
-                  </label>
+                  </label><br>
                   <input id='X' name='X' type='text' required
-                          onkeyup='this.value = this.value.replace(/[^\d-.e]/g,"")' maxlength='14'>
+                          onkeyup='this.value = this.value.replace(/[^\d-+.,e]/g,"")' maxlength='14'>
                   <br>
                   <!-- aria-live='polite' понять нужно ли это -->
                   <span class='x-error'></span>
@@ -93,7 +95,7 @@
                   <br>
                   <span class='y-error'></span>
                   <br>
-                  <label for='check'>
+                  <label>
                     Для того, чтобы проверить попадание точки в область,
                     нажмите на кнопку
                   </label><br>
@@ -149,6 +151,8 @@
                   <text x='160' y='97'>R/2</text>
                   <text x='160' y='205'>-R/2</text>
                   <text x='160' y='255'>-R</text>
+
+                  <circle id='circle' cx='150' cy='150' r='5' fill='#16161d' stroke-width='0'/>
                   
               </section>
             </section>
@@ -177,7 +181,7 @@
                   <th>Y</th>
                   <th>Результат</th>
                   <th>Время запроса</th>
-                  <th>Время исполнения</th>
+                  <th>Время исполнения, нc</th>
                 </tr>
               </thead>
             </table>

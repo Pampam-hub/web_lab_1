@@ -6,7 +6,7 @@ let xError = document.querySelector('span.x-error');
 let Y = form.elements.Y;
 let yError = document.querySelector('span.y-error');
 
-const numberRegExp = /^(-?\d+\.\d+|-?\d*|-?\d+(\.\d+)?e[-\+]?\d+)$/;
+const numberRegExp = /^(-?\d+[\.,]\d+|-?\d+|-?\d+([\.,]\d+)?e[-\+]?\d+)$/;
 
 function showMissingError(param, paramError) {
     paramError.textContent = `Задайте ${param}, пожалуйста`;
@@ -38,8 +38,6 @@ function submitForm() {
     xError.className = 'not error'; 
     
     if (missingX || missingY || missingR || numberFormatX ||  arithmeticX) {
-       
-
         if(missingR) {
             showMissingError('R', rError);
         } else if (missingX) {
@@ -52,16 +50,14 @@ function submitForm() {
             showMissingError('Y', yError);
         }
     } else {
-        let actionUrl = "./main.php";
-        console.log(X,value);
         $.ajax({
             type: 'GET',
-            url: actionUrl,
-            async: false,
-            data: {'X': X.value, 'Y': Y.value, 'R': R.value},
+            url: './main.php',
+            data: {'X': X.value.replace(',', '.'), 'Y': Y.value, 'R': R.value, 'Time': new Date().getTimezoneOffset()},
             success: function(data) {
                 updateTable(data);
-                console.log(data);
+                $('#circle').attr('cx', 150 + 200 * parseFloat(X.value)/(2*parseFloat(R.value)) ); 
+                $('#circle').attr('cy', 150 - 200 * parseFloat(Y.value)/(2*parseFloat(R.value)) );
             },
             error: function(data) { 
                 alert(data);
