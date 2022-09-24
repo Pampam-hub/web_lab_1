@@ -9,11 +9,12 @@
       <script type='text/javascript' src='./scripts/main.js' defer></script>
       <script type='text/javascript' src='./scripts/cleaning.js' defer></script>
       <script type='text/javascript' src='./scripts/updating.js' defer></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script type='text/javascript' src='./scripts/cookie.js' defer></script>
+      <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
       </style>
-    <body>
+    <body onload='init()'>
       <table id='main'>
         <tr> <!-- Row 1 -->
           <td class='horizontal-separator' colspan='7'></td>
@@ -53,7 +54,7 @@
                 Здесь можно ввести свои значения
                 (каждый параметр необходимо задать)
               </h4><br>
-              <form id='feedback-form' onsubmit="submitForm(); return false;" novalidate> 
+              <form id='feedback-form' onsubmit='submitForm(); return false;' novalidate> 
                 <p>
                   <label for='R'>Выберите R:</label>
                   <select id='R' name='R' required>
@@ -172,7 +173,7 @@
         <tr> <!-- Row 5 -->
           <td colspan='3'>
             <hr>
-            <input id='clean' type='button' value='Очистить таблицу' onclick='cleanTable()''>
+            <input id='clear' type='button' value='Очистить таблицу' onclick='cleanTable()''>
             <table class='info'>
               <thead>
                 <tr>
@@ -185,6 +186,13 @@
                 </tr>
               </thead>
             </table>
+          </td>
+        </tr>
+        <tr> <!-- Row 5 -->
+          <td colspan='5'>
+            <div id='cookie-message'>
+              
+            </div>
           </td>
         </tr>
       </table>

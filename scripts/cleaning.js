@@ -11,5 +11,16 @@ function cleanTable() {
         </tr>
     </thead>`;
     $('table.info').html(empty_table);
-    window.localStorage.removeItem('table_data');
+    
+    $.ajax({
+        type: 'GET',
+        url: './main.php',
+        data: {'unset': true},
+        success: function(data) {
+            updateTable(data);
+        },
+        error: function(data) {
+            alert(data);
+        }
+    });
 }

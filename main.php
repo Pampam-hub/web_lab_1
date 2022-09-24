@@ -1,8 +1,10 @@
 <?php
-$numberRegExp = '/^(-?\d+[\.]\d+|-?\d+|-?\d+([\.]\d+)?e[-\+]?\d+)$/';
+$number_reg_exp = '/^([-\+]?\d+[\.]\d+|[-\+]?\d+|[-\+]?\d+([\.]\d+)?e[-\+]?\d+)$/';
+session_start();
+
 function validation($param) {
-    global $numberRegExp;
-    return preg_match($numberRegExp, $param);
+    global $number_reg_exp;
+    return preg_match($number_reg_exp, $param);
 }
 
 function check_hit($r, $x, $y) {
@@ -25,10 +27,33 @@ function check_hit($r, $x, $y) {
     return $first_quarter || $second_quarter || $third_quarter;
 }
 
+function check_cookie() {
+    if( !isset( $_COOKIE['informed']) ) {
+        unset($_SESSION['table_res']);
+    }
+}
 
- if ( $_SERVER["REQUEST_METHOD"] === "GET" ) {
+if ( $_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['cookie']) ) {
+
+    setcookie('informed', '1');
+    exit();
+
+} else if ( $_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['table'])) {
+
+    if( isset( $_COOKIE['informed']) && isset($_SESSION['table_res']) ) {
+        exit( $_SESSION['table_res'] );
+    }
+
+    check_cookie();
+
+} else if ( $_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['unset']) ) {
+
+    unset($_SESSION['table_res']);
+
+} else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
     $start = microtime(true);
-
+    
     $R_value = trim($_GET['R']);
     $X_value = trim($_GET['X']);
     $Y_value = trim($_GET['Y']);
@@ -41,6 +66,9 @@ function check_hit($r, $x, $y) {
         $X = (float) $X_value;
         $Y = (float) $Y_value;
         
+        if($R < 0) {
+            exit('R должно быть неотрицательное!)');
+        }
         
         if ( check_hit($R, $X, $Y) ) {
             $result_hit = 'Попадение)';
@@ -49,7 +77,7 @@ function check_hit($r, $x, $y) {
         }
         $finish_time = number_format(microtime(true) - $start, 7, ".", "")  * 1000;
 
-        exit("
+        $res = "
         <tr>
             <td>$R_value</td>
             <td>$X_value</td>
@@ -58,10 +86,17 @@ function check_hit($r, $x, $y) {
             <td>$current_time</td>
             <td>$finish_time</td>
         </tr>
-        ");
+        ";
+
+        if( isset($_SESSION['table_res']) ) {
+           $_SESSION['table_res'] .= $res;
+        } else {
+            $_SESSION['table_res'] = $res;
+        }
+        exit($res);
     } else {
-        exit('Некорректный запрос( нужны числа!');
-    }
-    
-    
+        exit('Некорректный запрос( необходимо присвоить всем переменным числа! (разделитель - точка)');
+    }         
+} else {
+    exit('Некорректный запрос: не обрабатываем такое(');
 }
