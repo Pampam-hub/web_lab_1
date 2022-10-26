@@ -27,13 +27,13 @@ function denyCookie() {
 function init() {
 
     if ( !document.cookie.split(';').some(c => {
-        return c.trim().startsWith('informed' + '=');})) {
+        return c.trim().startsWith('ACCEPT_COOKIE' + '=');})) {
         const cookieMessage = `
-        <p>Если Вы не хотите потерять свою таблицу в ближайшее время - примите cookie</p><br>
+        <p>Если Вы не хотите потерять свою таблицу в ближайшее время - примите cookie</p>
+        <p>ПЫ. СЫ. Пока Вы не приняли cookie, введённые Вами данные не хранятся(</p><br>
         <a id='i-agree' onClick='acceptCookie()'>Хочу cookie 🍪</a>
         <a id='i-not-agree' onClick='denyCookie()'>Отстаньте со своими cookie 😑</a>
         `;
-        cookieMessage.id = 'not cookie';
         $('#cookie-message').html(cookieMessage); 
     } else {
         resetCookie();

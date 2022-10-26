@@ -6,7 +6,7 @@ let xError = document.querySelector('span.x-error');
 let Y = form.elements.Y;
 let yError = document.querySelector('span.y-error');
 
-const numberRegExp = /^([-\+]?\d+[\.,]\d+|[-\+]?\d+|[-\+]?\d+([\.,]\d+)?e[-\+]?\d+)$/;
+const numberRegExp = /^([-+]?\d+[\.,]\d+|[-+]?\d+|[-+]?\d+([.,]\d+)?e[-+]?\d+)$/;
 
 function showMissingError(param, paramError) {
     paramError.textContent = `Задайте ${param}, пожалуйста`;

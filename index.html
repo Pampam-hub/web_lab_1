@@ -14,6 +14,7 @@
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
       </style>
+    </head>
     <body onload='init()'>
       <table id='main'>
         <tr> <!-- Row 1 -->
@@ -50,61 +51,64 @@
           <td class='vertical-separator' rowspan='4'></td>
 
           <td id='data'>
-              <h4>
-                Здесь можно ввести свои значения
-                (каждый параметр необходимо задать)
-              </h4><br>
-              <form id='feedback-form' onsubmit='submitForm(); return false;' novalidate> 
-                <p>
-                  <label for='R'>Выберите R:</label>
-                  <select id='R' name='R' required>
-                    <option value='' selected>Тык</option>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
-                  </select>
-                  <br>
-                  <span class='r-error'></span>
-                  <br>
+            <h1 class="1" id="id"><h2 class="2"><h2 class="3"><h1 class="4">
+              <h1 class="5"><h2 class="6"><h2 class=""7><h1 class="8"><h3 class="9"><h4 class="10"><h5 class="11">
+                 HELLO MY DEAR FRIEND!
+              </h5></h4></h3></h1></h2></h2></h1>
+            </h1></h2></h2></h1>
+            <h4>
+              Здесь можно ввести свои значения
+              (каждый параметр необходимо задать)
+            </h4><br>
+            <form id='feedback-form' onsubmit='submitForm(); return false;' novalidate> 
+              <p>
+                <label for='R'>Выберите R:</label>
+                <select id='R' name='R' required>
+                  <option value='' selected>Тык</option>
+                  <option value='1'>1</option>
+                  <option value='2'>2</option>
+                  <option value='3'>3</option>
+                  <option value='4'>4</option>
+                  <option value='5'>5</option>
+                </select>
+                <br>
+                <span class='r-error'></span>
+                <br>
 
-                  <label for='X'>
-                    Введите X ( изменяется в интервале (-5 ; 3) ):
-                  </label><br>
-                  <input id='X' name='X' type='text' required
-                          onkeyup='this.value = this.value.replace(/[^\d-+.,e]/g,"")' maxlength='14'>
-                  <br>
-                  <!-- aria-live='polite' понять нужно ли это -->
-                  <span class='x-error'></span>
-                  <br>
+                <label for='X'>
+                  Введите X ( изменяется в интервале (-5 ; 3) ):
+                </label><br>
+                <input id='X' name='X' type='text' required
+                        onkeyup='this.value = this.value.replace(/[^\d-+.,e]/g,"")' maxlength='14'>
+                <br>
+                <!-- aria-live='polite' понять нужно ли это -->
+                <span class='x-error'></span>
+                <br>
 
-                  <label for='Y'>Выберите Y:</label>
-                  <select id='Y' name='Y' required>
-                    <option value='' selected>Тык</option>
-                    <option value='-4'>-4</option>
-                    <option value='-3'>-3</option>
-                    <option value='-2'>-2</option>
-                    <option value='-1'>-1</option>
-                    <option value='0'>0</option>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
-                  </select>
-                  <br>
-                  <span class='y-error'></span>
-                  <br>
-                  <label>
-                    Для того, чтобы проверить попадание точки в область,
-                    нажмите на кнопку
-                  </label><br>
-                  <input id='check' name='check' type='submit' value='Проверить'>
-                  <p id='result'></p>
-                </p>
-              </form>
-            </div>
+                <label for='Y'>Выберите Y:</label>
+                <select id='Y' name='Y' required>
+                  <option value='' selected>Тык</option>
+                  <option value='-4'>-4</option>
+                  <option value='-3'>-3</option>
+                  <option value='-2'>-2</option>
+                  <option value='-1'>-1</option>
+                  <option value='0'>0</option>
+                  <option value='1'>1</option>
+                  <option value='2'>2</option>
+                  <option value='3'>3</option>
+                  <option value='4'>4</option>
+                  <option value='5'>5</option>
+                </select>
+                <br>
+                <span class='y-error'></span>
+                <br>
+                <label>
+                  Для того, чтобы проверить попадание точки в область,
+                  нажмите на кнопку
+                </label><br>
+                <input id='check' name='check' type='submit' value='Проверить'>
+              </p>
+            </form>
           </td>
 
           <td class='vertical-separator'></td>
@@ -156,7 +160,6 @@
                   <circle id='circle' cx='150' cy='150' r='5' fill='#16161d' stroke-width='0'/>
                   
               </section>
-            </section>
           </td>
 
           <td class='edge-separator' rowspan='5'></td>
@@ -167,13 +170,9 @@
         </tr>
 
         <tr> <!-- Row 4 -->
-          <td class='horizontal-separator' colspan='3'></td>
-        </tr>
-
-        <tr> <!-- Row 5 -->
           <td colspan='3'>
             <hr>
-            <input id='clear' type='button' value='Очистить таблицу' onclick='cleanTable()''>
+            <input id='clear' type='button' value='Очистить таблицу' onclick='cleanTable()'>
             <table class='info'>
               <thead>
                 <tr>
@@ -182,7 +181,7 @@
                   <th>Y</th>
                   <th>Результат</th>
                   <th>Время запроса</th>
-                  <th>Время исполнения, нc</th>
+                  <th>Время исполнения, мc</th>
                 </tr>
               </thead>
             </table>

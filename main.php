@@ -1,5 +1,5 @@
 <?php
-$number_reg_exp = '/^([-\+]?\d+[\.]\d+|[-\+]?\d+|[-\+]?\d+([\.]\d+)?e[-\+]?\d+)$/';
+$number_reg_exp = '/^([-+]?\d+[.,]\d+|[-+]?\d+|[-+]?\d+([.,]\d+)?e[-+]?\d+)$/';
 session_start();
 
 function validation($param) {
@@ -28,19 +28,19 @@ function check_hit($r, $x, $y) {
 }
 
 function check_cookie() {
-    if( !isset( $_COOKIE['informed']) ) {
+    if( !isset( $_COOKIE['ACCEPT_COOKIE']) ) {
         unset($_SESSION['table_res']);
     }
 }
 
 if ( $_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['cookie']) ) {
 
-    setcookie('informed', '1');
+    setcookie('ACCEPT_COOKIE', 'true');
     exit();
 
 } else if ( $_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['table'])) {
 
-    if( isset( $_COOKIE['informed']) && isset($_SESSION['table_res']) ) {
+    if( isset( $_COOKIE['ACCEPT_COOKIE']) && isset($_SESSION['table_res']) ) {
         exit( $_SESSION['table_res'] );
     }
 
@@ -75,7 +75,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['cookie']) ) {
         } else {
             $result_hit = 'Промах(';
         }
-        $finish_time = number_format(microtime(true) - $start, 7, ".", "")  * 1000;
+        $finish_time = number_format(microtime(true) - $start, 7, '.', '')  * 1000;
 
         $res = "
         <tr>
@@ -87,11 +87,12 @@ if ( $_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['cookie']) ) {
             <td>$finish_time</td>
         </tr>
         ";
-
-        if( isset($_SESSION['table_res']) ) {
-           $_SESSION['table_res'] .= $res;
-        } else {
-            $_SESSION['table_res'] = $res;
+        if( isset( $_COOKIE['ACCEPT_COOKIE'] ) ) {
+            if( isset($_SESSION['table_res']) ) {
+            $_SESSION['table_res'] .= $res;
+            } else {
+                $_SESSION['table_res'] = $res;
+            }
         }
         exit($res);
     } else {
